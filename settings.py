@@ -10,6 +10,6 @@ map_list =[
 "X                       X",
 "XXXXXXXXXXXXXXXXXXXXXXXXX",]
 
-tile_size=45
+tile_size=50
 screen_width = 1200
 screen_height = len(map_list)*tile_size
