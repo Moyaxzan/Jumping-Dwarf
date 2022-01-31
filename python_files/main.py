@@ -8,7 +8,7 @@ from map import *
 pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
-map = Map(map_list, screen)
+world = Map(map_list, screen)
 test_tile = pygame.sprite.Group(Tile((40, 40), 40))
 
 while True:
@@ -18,6 +18,6 @@ while True:
             sys.exit()
 
         screen.fill("black")
-        map.run()
+        world.run()
         pygame.display.update()
         clock.tick(60)
