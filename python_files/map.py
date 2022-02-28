@@ -26,8 +26,9 @@ class Map:
                     player = Player((x, y-tile_size))
                     self.player_group.add(player)
         self.tiles_group.update("y", -tile_size * len(map_list) + screen_height)
-        self.player_group.update("y", -tile_size * len(map_list) + screen_height)
+        self.player_group.update(-tile_size * len(map_list) + screen_height, 0)
 
     def run(self):
+        self.player_group.update(0,0)
         self.player_group.draw(self.display_surface)
         self.tiles_group.draw(self.display_surface)

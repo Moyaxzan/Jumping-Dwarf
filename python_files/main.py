@@ -18,15 +18,13 @@ while True:
     screen.fill("black")
     clock.tick(60)
     world.run()
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        world.player_group.update("x", -5)
-    if keys[pygame.K_RIGHT]:
-        world.player_group.update("x", 5)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                world.player_group.update(-40,0)
 
 
 
