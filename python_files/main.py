@@ -1,4 +1,7 @@
 import sys
+
+import pygame
+
 from settings import *
 from map import *
 
@@ -15,6 +18,11 @@ while True:
     screen.fill("black")
     clock.tick(60)
     world.run()
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        world.player_group.update("x", -5)
+    if keys[pygame.K_RIGHT]:
+        world.player_group.update("x", 5)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
