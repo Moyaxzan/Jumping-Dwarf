@@ -1,3 +1,5 @@
+import time
+
 import pygame.math
 
 from tiles import *
@@ -13,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 8
         self.gravity = 0.5
-        self.jump_speed = -10
+        self.jump_speed = -0.5
 
     def get_input(self):
         keys = pygame.key.get_pressed()
@@ -25,10 +27,23 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
 
         if keys[pygame.K_SPACE]:
-            self.jump1()
+            hold = 0
+            events = pygame.event.get()
+            for event in events:
+                print(1)
+                print(event.type)
+                if event.type == pygame.KEYDOWN:
+                    print(2)
+                    if event.key == pygame.K_SPACE:
+                        print(3)
+                        while event.type != 769:
+                            hold += 0.5
+                            print(hold)
 
-    def jump1(self):
-        self.direction.y = self.jump_speed
+            self.jump1(hold)
+
+    def jump1(self, hold):
+        self.direction.y = self.jump_speed + hold/1000
 
     def apply_gravity(self):
         self.direction.y += self.gravity

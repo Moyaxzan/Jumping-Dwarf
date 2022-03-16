@@ -45,6 +45,7 @@ class Map:
             if sprite.rect.colliderect(player):
                 if player.direction.y > 0:
                     player.rect.bottom = sprite.rect.top
+                    player.direction.y = 0
                 if player.direction.y < 0:
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0.75
