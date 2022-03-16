@@ -11,6 +11,7 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 world = Map(map_list, screen)
+hold = 0
 # test_tile = pygame.sprite.Group(Tile((40, 40), 40))
 
 while True:
@@ -22,9 +23,20 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        """if event.type == pygame.KEYDOWN:
+        while event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE and hold < 120:
+                print(hold)
+                hold += 1
+            else:
+                break
+        if event.type == pygame.KEYUP:
             if event.key == pygame.K_SPACE:
-                world.player_group.update(-40,0)"""
+                player = world.player.sprite
+                print(hold)
+                player.direction.y = -10 - hold/2
+                hold = 0
+
+
 
 
 
