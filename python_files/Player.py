@@ -32,13 +32,13 @@ class Player(pygame.sprite.Sprite):
 
     def apply_gravity(self):
         self.direction.y += self.gravity
-        self.rect.y += self.direction.y
+
 
 
     def update(self, shift_y, shift_x):
         self.get_input()
         if shift_y == 0 and shift_x == 0:
-            self.rect.x += self.direction.x * self.speed
+            pass
         else:
             self.rect.y += shift_y
             self.rect.x += shift_x
