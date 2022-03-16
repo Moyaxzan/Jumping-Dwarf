@@ -4,7 +4,7 @@ map_list =[
     "X                       X",
     "X                       X",
     "X                       X",
-    "X                       X",
+    "X             XXXXXX    X",
     "X                       X",
     "X                       X",
     "X                       X",

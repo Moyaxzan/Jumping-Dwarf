@@ -15,16 +15,16 @@ world = Map(map_list, screen)
 
 while True:
     pygame.display.update()
-    screen.fill("black")
+    screen.fill("purple")
     clock.tick(60)
     world.run()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.KEYDOWN:
+        """if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                world.player_group.update(-40,0)
+                world.player_group.update(-40,0)"""
 
 
 
