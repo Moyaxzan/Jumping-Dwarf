@@ -25,8 +25,8 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-
-
+    def jump1(self, hold_value):
+        self.direction.y = -6 - hold_value / 10
 
     def apply_gravity(self):
         self.direction.y += self.gravity
@@ -35,9 +35,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, shift_y, shift_x):
         self.get_input()
-        if shift_y == 0 and shift_x == 0:
-            pass
-        else:
+        if shift_y != 0 or shift_x != 0:
             self.rect.y += shift_y
             self.rect.x += shift_x
         self.apply_gravity()
