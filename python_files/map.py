@@ -38,7 +38,6 @@ class Map:
                 if player.direction.x > 0:
                     player.rect.right = sprite.rect.left
 
-
     def vertical_movement(self):
         player = self.player.sprite
         player.rect.y += player.direction.y
@@ -52,7 +51,7 @@ class Map:
                     player.direction.y = 0.75
 
     def run(self):
-        self.player.update(0,0)
+        self.player.update(0, 0)
         self.horizontal_movement()
         self.vertical_movement()
         self.player.draw(self.display_surface)
