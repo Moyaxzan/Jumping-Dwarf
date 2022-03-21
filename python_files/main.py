@@ -27,7 +27,7 @@ while True:
             pygame.quit()
             sys.exit()
         if hold and (player.direction.y == player.gravity or player.direction.y == 0):
-            hold_value += 3.7
+            hold_value += 6
             print(hold_value)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
@@ -35,7 +35,7 @@ while True:
                 pressed = True
         elif event.type == pygame.KEYUP:
             hold = False
-        if ((not hold and pressed) or (hold_value > 110)) and (player.direction.y == player.gravity or player.direction.y == 0):
+        if ((not hold and pressed) or (hold_value > 95)) and (player.direction.y == player.gravity or player.direction.y == 0):
             player.jump1(hold_value)
             hold_value = 0
             pressed = False
