@@ -17,7 +17,6 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = -10
 
     def get_input(self, held):
-        print(held)
         keys = pygame.key.get_pressed()
         if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]):
             self.direction.x = -1

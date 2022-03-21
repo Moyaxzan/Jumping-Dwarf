@@ -28,7 +28,6 @@ while True:
             sys.exit()
         if hold and (player.direction.y == player.gravity or player.direction.y == 0):
             hold_value += 6
-            print(hold_value)
             held = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
