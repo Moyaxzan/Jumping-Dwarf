@@ -7,14 +7,27 @@ from math import cos, tan
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        self.image = pygame.Surface((40, 40*2))
-        self.image.fill("red")
-        self.rect = self.image.get_rect(topleft=pos)
-        self.direction = pygame.math.Vector2(0, 0)
-        self.speed = 8
-        self.gravity = 0.5
-        self.hold = 0
-        self.jump_speed = -10
+        scale_x = 1280.0 / 1600
+        scale_y = 720.0 / 900
+
+        with open(r'C:\Users\Kiran\Downloads\Nain_face-Recovered_650mss.png') as nain:
+            self.sprite = []
+
+            surface = self.sprite.append(pygame.image.load(nain))
+
+
+
+
+            self.current_sprite = 0
+            self.image = self.sprite[self.current_sprite]
+            self.rect = self.image.get_rect(topleft=pos)
+
+
+            self.direction = pygame.math.Vector2(0, 0)
+            self.speed = 8
+            self.gravity = 0.5
+            self.hold = 0
+            self.jump_speed = -10
 
     def get_input(self, held):
         keys = pygame.key.get_pressed()
