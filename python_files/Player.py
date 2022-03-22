@@ -7,10 +7,10 @@ from math import cos, tan
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        self.image = pygame.Surface((40,40*2))
+        self.image = pygame.Surface((40, 40*2))
         self.image.fill("red")
         self.rect = self.image.get_rect(topleft=pos)
-        self.direction = pygame.math.Vector2(0,0)
+        self.direction = pygame.math.Vector2(0, 0)
         self.speed = 8
         self.gravity = 0.5
         self.hold = 0
@@ -25,7 +25,8 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-    def jump1(self, hold_value):
+    def jump1(self, hold_value, direction):
+        print(direction)
         self.direction.y = -6 - hold_value / 10
 
     def apply_gravity(self):
