@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         scale_x = 1280.0 / 1600
         scale_y = 720.0 / 900
 
-        with open(r'C:\Users\Kiran\Downloads\Nain_face-Recovered_650mss.png') as nain:
+        with open(r'../assets/dwarf/static dwarf.gif') as nain:
             self.sprite = []
 
             surface = self.sprite.append(pygame.image.load(nain))
