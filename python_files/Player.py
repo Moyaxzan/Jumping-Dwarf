@@ -28,11 +28,12 @@ class Player(pygame.sprite.Sprite):
             self.hold = 0
             self.jump_speed = -10
 
-    def get_input(self, held):
+    def get_input(self, held, world):
         keys = pygame.key.get_pressed()
-        if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]):
+        ground = self.on_ground(world)
+        if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]) and ground:
             self.direction.x = -1
-        elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]):
+        elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
             self.direction.x = 1
         else:
             self.direction.x = 0
@@ -43,8 +44,8 @@ class Player(pygame.sprite.Sprite):
     def apply_gravity(self):
         self.direction.y += self.gravity
 
-    def update(self, shift_y, shift_x, held):
-        self.get_input(held)
+    def update(self, shift_y, shift_x, held, world):
+        self.get_input(held, world)
         if shift_y != 0 or shift_x != 0:
             self.rect.y += shift_y
             self.rect.x += shift_x

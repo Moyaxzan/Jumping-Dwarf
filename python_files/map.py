@@ -26,7 +26,7 @@ class Map:
                     player_sprite = Player((x, y-tile_size))
                     self.player.add(player_sprite)
         self.tiles_group.update("y", -tile_size * len(map_list) + screen_height)
-        self.player.update(-tile_size * len(map_list) + screen_height, 0, False)
+        self.player.update(-tile_size * len(map_list) + screen_height, 0, False, self)
 
     def horizontal_movement(self):
         player = self.player.sprite
@@ -50,8 +50,8 @@ class Map:
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0.75
 
-    def run(self, held):
-        self.player.update(0, 0, held)
+    def run(self, held, world):
+        self.player.update(0, 0, held, world)
         self.horizontal_movement()
         self.vertical_movement()
         self.player.draw(self.display_surface)

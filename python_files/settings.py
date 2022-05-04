@@ -18,13 +18,13 @@ map_list =[
     "X                     X",
     "X                     X",
     "X                     X",
-    "X                     X",
+    "X           P         X",
     "X          XXX        X",
     "X                     X",
     "X                     X",
     "X                     X",
     "XXXXXX                X",
-    "XXXXXX      P         X",
+    "XXXXXX                X",
     "XXXXXXXXXXXXXXXXXXXXXXX"]
 
 tile_size = 60

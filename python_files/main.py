@@ -57,7 +57,7 @@ while True:
             hold_value = 0
             pressed = False
             hold = False
-    world.run(held)
+    world.run(held, world)
 
 
 
