@@ -42,7 +42,6 @@ while True:
                 held = False
         if ((not hold and pressed) or (hold_value > 110)) and (player.direction.y == player.gravity or
                                                               player.direction.y == 0):
-            print(events)
             for event2 in events:
                 if event2.type == pygame.KEYDOWN:
                     print(event2.key == pygame.K_LEFT, "ooOOooOoOoOOoo")

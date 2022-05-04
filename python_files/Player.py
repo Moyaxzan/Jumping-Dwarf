@@ -17,7 +17,6 @@ class Player(pygame.sprite.Sprite):
 
 
 
-
             self.current_sprite = 0
             self.image = self.sprite[self.current_sprite]
             self.rect = self.image.get_rect(topleft=pos)
@@ -39,7 +38,6 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
 
     def jump1(self, hold_value, direction):
-        print(direction)
         self.direction.y = -6 - hold_value / 10
 
     def apply_gravity(self):
@@ -51,6 +49,12 @@ class Player(pygame.sprite.Sprite):
             self.rect.y += shift_y
             self.rect.x += shift_x
         self.apply_gravity()
+
+    def on_ground(self, world):
+        for tile in world.tiles_group:
+            if tile.rect.collidepoint(self.rect.centerx, self.rect.bottom):
+                return True
+        return False
 
     def jump(self, hold, x, height):
         angle = hold * 120
