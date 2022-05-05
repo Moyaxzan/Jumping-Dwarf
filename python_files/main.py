@@ -67,4 +67,4 @@ while True:
             hold = False
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             play_the_game = False
-    world.run(held, world, worldshift)
+    world.run(held, world, worldshift, player)

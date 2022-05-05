@@ -1,6 +1,4 @@
 from sys import exit
-import pygame
-
 from Buttons import *
 
 map_list =[
