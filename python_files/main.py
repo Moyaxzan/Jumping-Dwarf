@@ -1,13 +1,12 @@
 import sys
-
 import pygame
-
 from settings import *
 from map import *
 
 
 # Pygame init
 pygame.init()
+pygame.display.set_caption("Jumping Dwarf")
 screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 world = Map(map_list, screen)
@@ -15,11 +14,14 @@ hold = False
 hold_value = 0
 pressed = False
 held = False
-
+play_the_game = False
 
 # test_tile = pygame.sprite.Group(Tile((40, 40), 40))
 
 while True:
+    if not play_the_game:
+        Menu(screen)
+        play_the_game = True
     worldshift = 0
     pygame.display.update()
     screen.fill("purple")
@@ -37,6 +39,7 @@ while True:
     for event in events:
 
         if event.type == pygame.QUIT:
+            play_the_game = False
             pygame.quit()
             sys.exit()
 
@@ -62,11 +65,6 @@ while True:
             hold_value = 0
             pressed = False
             hold = False
-
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            play_the_game = False
     world.run(held, world, worldshift)
-
-
-
-
-
-
