@@ -20,6 +20,7 @@ held = False
 # test_tile = pygame.sprite.Group(Tile((40, 40), 40))
 
 while True:
+    worldshift = 0
     pygame.display.update()
     screen.fill("purple")
     clock.tick(60)
@@ -29,6 +30,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if player.get_y() < 0:
+            worldshift = screen_height
+            player.set_y(player.get_y() + screen_height)
+        elif player.get_y() > screen_height:
+            worldshift = -screen_height
+            player.set_y(player.get_y() - screen_height)
         if hold and (player.direction.y == player.gravity or player.direction.y == 0):
             hold_value += 1
             held = True
@@ -49,7 +56,7 @@ while True:
             hold_value = 0
             pressed = False
             hold = False
-    world.run(held, world)
+    world.run(held, world, worldshift)
 
 
 

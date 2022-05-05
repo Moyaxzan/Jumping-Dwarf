@@ -61,3 +61,9 @@ class Player(pygame.sprite.Sprite):
         angle = hold * 120
         g = 9.81
         y = -(g / 2 * vect * cos(angle)**2) * x**2 + tan(angle) * x + height
+
+    def get_y(self):
+        return self.rect.centery
+
+    def set_y(self, y):
+        self.rect.centery = y
