@@ -29,4 +29,4 @@ map_list =[
 
 tile_size = 60
 screen_width = tile_size * len(map_list[1])
-screen_height = 12 * tile_size
+screen_height = 9 * tile_size

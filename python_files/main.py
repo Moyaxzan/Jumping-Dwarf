@@ -15,7 +15,7 @@ hold = False
 hold_value = 0
 pressed = False
 held = False
-direction = "None"
+
 
 # test_tile = pygame.sprite.Group(Tile((40, 40), 40))
 
@@ -30,31 +30,22 @@ while True:
             pygame.quit()
             sys.exit()
         if hold and (player.direction.y == player.gravity or player.direction.y == 0):
-            hold_value += 10
+            hold_value += 1
             held = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 hold = True
                 pressed = True
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_SPACE:
+        elif event.type == pygame.KEYUP or hold_value > 11:
+            if hold_value > 11:
                 hold = False
                 held = False
-        if ((not hold and pressed) or (hold_value > 110)) and (player.direction.y == player.gravity or
-                                                              player.direction.y == 0):
-            for event2 in events:
-                if event2.type == pygame.KEYDOWN:
-                    print(event2.key == pygame.K_LEFT, "ooOOooOoOoOOoo")
-                    if event2.key == pygame.K_LEFT or event2.key == pygame.K_q:
-                        direction = "left"
-                        print("left")
-                    if event2.key == pygame.K_RIGHT or event2.key == pygame.K_d:
-                        direction = "right"
-                        print("right")
-                    else:
-                        direction = "None"
+            elif event.key == pygame.K_SPACE:
+                hold = False
+                held = False
+        if not hold and pressed and (player.direction.y == player.gravity or player.direction.y == 0):
             if player.on_ground(world):
-                player.jump1(hold_value, direction)
+                player.jump1(hold_value)
             hold_value = 0
             pressed = False
             hold = False

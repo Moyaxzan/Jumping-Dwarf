@@ -38,8 +38,8 @@ class Player(pygame.sprite.Sprite):
         elif ground:
             self.direction.x = 0
 
-    def jump1(self, hold_value, direction):
-        self.direction.y = -6 - hold_value / 10
+    def jump1(self, hold_value):
+        self.direction.y = -6 - hold_value
 
     def apply_gravity(self):
         self.direction.y += self.gravity
