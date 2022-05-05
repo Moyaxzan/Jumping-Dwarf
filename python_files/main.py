@@ -53,7 +53,8 @@ while True:
                         print("right")
                     else:
                         direction = "None"
-            player.jump1(hold_value, direction)
+            if player.on_ground(world):
+                player.jump1(hold_value, direction)
             hold_value = 0
             pressed = False
             hold = False

@@ -53,7 +53,8 @@ class Player(pygame.sprite.Sprite):
 
     def on_ground(self, world):
         for tile in world.tiles_group:
-            if tile.rect.collidepoint(self.rect.centerx, self.rect.bottom):
+            if tile.rect.collidepoint(self.rect.centerx, self.rect.bottomleft[1]) or \
+                    tile.rect.collidepoint(self.rect.centerx, self.rect.bottomright[1]):
                 return True
         return False
 
