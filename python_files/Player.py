@@ -15,12 +15,9 @@ class Player(pygame.sprite.Sprite):
 
             surface = self.sprite.append(pygame.image.load(nain))
 
-
-
             self.current_sprite = 0
             self.image = self.sprite[self.current_sprite]
             self.rect = self.image.get_rect(topleft=pos)
-
 
             self.direction = pygame.math.Vector2(0, 0)
             self.speed = 8
