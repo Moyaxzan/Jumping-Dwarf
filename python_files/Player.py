@@ -35,7 +35,7 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = -1
         elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
             self.direction.x = 1
-        else:
+        elif ground:
             self.direction.x = 0
 
     def jump1(self, hold_value, direction):
@@ -53,8 +53,7 @@ class Player(pygame.sprite.Sprite):
 
     def on_ground(self, world):
         for tile in world.tiles_group:
-            if tile.rect.collidepoint(self.rect.centerx, self.rect.bottomleft[1]) or \
-                    tile.rect.collidepoint(self.rect.centerx, self.rect.bottomright[1]):
+            if tile.rect.collidepoint(self.rect.centerx - 33, self.rect.bottom) or tile.rect.collidepoint(self.rect.centerx + 33, self.rect.bottom):
                 return True
         return False
 
