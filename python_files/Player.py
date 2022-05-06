@@ -7,16 +7,8 @@ from math import cos, tan
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        scale_x = 1280.0 / 1600
-        scale_y = 720.0 / 900
-
         with open(r'../assets/dwarf/static dwarf.gif') as nain:
-            self.sprite = []
-
-            surface = self.sprite.append(pygame.image.load(nain))
-
-            self.current_sprite = 0
-            self.image = self.sprite[self.current_sprite]
+            self.image = pygame.image.load(nain)
             self.rect = self.image.get_rect(topleft=pos)
 
             self.direction = pygame.math.Vector2(0, 0)

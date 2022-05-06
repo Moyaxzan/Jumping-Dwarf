@@ -15,18 +15,28 @@ class Map:
         self.player = pygame.sprite.GroupSingle()
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
-                if cell == "X":
-                    x = col_index * tile_size
-                    y = row_index * tile_size
-                    tile = Tile((x, y), tile_size)
+                if cell == "G":
+                    x = col_index * 60
+                    y = row_index * 60
+                    tile = Tile((x, y), "grass")
+                    self.tiles_group.add(tile)
+                if cell == "D":
+                    x = col_index * 60
+                    y = row_index * 60
+                    tile = Tile((x, y), "dirt")
+                    self.tiles_group.add(tile)
+                if cell == "W":
+                    x = col_index * 60
+                    y = row_index * 60
+                    tile = Tile((x, y), "wall")
                     self.tiles_group.add(tile)
                 if cell == "P":
-                    x = col_index * tile_size
-                    y = row_index * tile_size
-                    player_sprite = Player((x, y-tile_size))
+                    x = col_index * 60
+                    y = row_index * 60
+                    player_sprite = Player((x, y - 60))
                     self.player.add(player_sprite)
-        self.tiles_group.update("y", -tile_size * len(map_list) + screen_height)
-        self.player.update(-tile_size * len(map_list) + screen_height, 0, False, self)
+        self.tiles_group.update("y", -60 * len(map_list) + screen_height)
+        self.player.update(-60 * len(map_list) + screen_height, 0, False, self)
 
     def horizontal_movement(self, world, player):
         player = self.player.sprite
