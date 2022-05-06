@@ -35,8 +35,10 @@ class Map:
             if sprite.rect.colliderect(player):
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
+                    player.direction.x = -(player.direction.x) * 0.5
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
+                    player.direction.x = -(player.direction.x) * 0.5
 
     def vertical_movement(self):
         player = self.player.sprite
