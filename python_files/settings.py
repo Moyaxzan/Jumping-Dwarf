@@ -1,5 +1,7 @@
 from sys import exit
+
 from Buttons import *
+
 
 map_list =[
     "W                     W",

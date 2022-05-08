@@ -1,7 +1,8 @@
 import pygame.math
-
-from tiles import *
 from math import cos, tan
+
+from Animation import *
+from Tiles import *
 
 
 class Player(pygame.sprite.Sprite):
@@ -11,11 +12,12 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(nain)
             self.rect = self.image.get_rect(topleft=pos)
 
-            self.direction = pygame.math.Vector2(0, 0)
-            self.speed = 8
-            self.gravity = 0.5
-            self.hold = 0
-            self.jump_speed = -10
+        self.direction = pygame.math.Vector2(0, 0)
+        self.speed = 8
+        self.gravity = 0.5
+        self.hold = 0
+        self.jump_speed = -10
+        self.Anime = Animation()
 
     def get_input(self, held, world):
         keys = pygame.key.get_pressed()
@@ -26,6 +28,8 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 1
         elif ground:
             self.direction.x = 0
+            if not held:
+                self.image = pygame.image.load(self.Anime.launch_gif("static_dwarf","dwarf",2, .03))
 
     def jump1(self, hold_value):
         self.direction.y = -6 - hold_value

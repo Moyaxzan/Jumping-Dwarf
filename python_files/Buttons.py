@@ -1,5 +1,6 @@
 import pygame
 
+
 class Button:
     def __init__(self, screen, position, dimension, color):
         """self.image = image

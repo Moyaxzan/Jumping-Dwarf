@@ -1,7 +1,10 @@
 import sys
 import pygame
+
 from settings import *
-from map import *
+from Map import *
+from Animation import *
+
 
 if __name__ == '__main__':
     # Pygame init
@@ -67,4 +70,6 @@ if __name__ == '__main__':
                 hold = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 play_the_game = False
+
+
         world.run(held, world, worldshift, player)

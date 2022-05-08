@@ -1,5 +1,4 @@
-import pygame
-from tiles import Tile
+from Tiles import Tile
 from settings import *
 from Player import Player
 
