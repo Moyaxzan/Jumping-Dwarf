@@ -24,8 +24,8 @@ map_list = [
     "WGG                   W",
     "W        GGGG         W",
     "W                     W",
+    "W                GG   W",
     "W                     W",
-    "W                G    W",
     "W                     W",
     "W          GG         W",
     "W                     W",
@@ -38,7 +38,7 @@ map_list = [
     "W                     W",
     "WWW                   W",
     "WWW                   W",
-    "W    P                W",
+    "W                     W",
     "W    GG               W",
     "W                     W",
     "W                     W",
@@ -106,7 +106,7 @@ map_list = [
     "W                     W",
     "W   GGGGG             W",
     "W                     W",
-    "W                     W",
+    "W                 P   W",
     "W                     W",
     "DGGGGGGGGGGGGGGGGGGGGGD"]
 
