@@ -8,7 +8,7 @@ from Tiles import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
-        with open(r'../assets/dwarf/static dwarf.gif') as nain:
+        with open(r'../assets/dwarf/static_dwarf1.png') as nain:
             self.image = pygame.image.load(nain)
             self.rect = self.image.get_rect(topleft=pos)
 
