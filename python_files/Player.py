@@ -1,6 +1,5 @@
 import pygame.math
 from math import cos, tan
-
 from Animation import *
 from Tiles import *
 
@@ -24,8 +23,10 @@ class Player(pygame.sprite.Sprite):
         ground = self.on_ground(world)
         if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]) and ground:
             self.direction.x = -1
+            self.image = pygame.image.load(self.Anime.launch_gif("running_right","dwarf",2,.1))
         elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
             self.direction.x = 1
+            self.image = pygame.image.load(self.Anime.launch_gif("running_right","dwarf",2,.1))
         elif ground:
             self.direction.x = 0
             if not held:

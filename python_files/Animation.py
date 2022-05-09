@@ -1,13 +1,13 @@
-import pygame.image
-
-
 class Animation:
     def __init__(self):
         self.frames = []
         self.actual_frame = 0
         self.frame = 0
+        self.switch_time = 0
+        self.count_thing = 0
 
     def collect_frames(self,gif_name,gif_folder,frames_nb):
+        self.frames = []
         for each_frame in range(frames_nb):
             with open(r"../assets/"+gif_folder+"/"+gif_name+str(each_frame+1)+".png") as pose:
                 self.frames.append(pose.name)

@@ -1,9 +1,5 @@
 import sys
-import pygame
-
-from settings import *
 from Map import *
-from Animation import *
 
 
 if __name__ == '__main__':
@@ -19,15 +15,13 @@ if __name__ == '__main__':
     held = False
     play_the_game = False
 
-    # test_tile = pygame.sprite.Group(Tile((40, 40), 40))
-
     while True:
         if not play_the_game:
             Menu(screen)
             play_the_game = True
         worldshift = 0
         pygame.display.update()
-        screen.fill("cyan")
+        screen.fill("black")
         clock.tick(60)
         events = pygame.event.get()
         player = world.player.sprite
@@ -72,4 +66,4 @@ if __name__ == '__main__':
                 play_the_game = False
 
 
-        world.run(held, world, worldshift, player)
+        world.run(held, world, worldshift)

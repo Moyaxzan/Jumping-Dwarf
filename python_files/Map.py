@@ -37,7 +37,7 @@ class Map:
         self.tiles_group.update("y", -60 * len(map_list) + screen_height)
         self.player.update(-60 * len(map_list) + screen_height, 0, False, self)
 
-    def horizontal_movement(self, world, player):
+    def movement_collide(self):
         player = self.player.sprite
         player.rect.x += player.direction.x * player.speed
         for sprite in self.tiles_group.sprites():
@@ -48,9 +48,6 @@ class Map:
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
                     player.direction.x = -(player.direction.x) * 0.5
-
-    def vertical_movement(self):
-        player = self.player.sprite
         player.rect.y += player.direction.y
         for sprite in self.tiles_group.sprites():
             if sprite.rect.colliderect(player):
@@ -61,10 +58,10 @@ class Map:
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0.75
 
-    def run(self, held, world, world_shift, player):
+
+    def run(self, held, world, world_shift):
         world.tiles_group.update("y", world_shift)
         self.player.update(0, 0, held, world)
-        self.horizontal_movement(world, player)
-        self.vertical_movement()
+        self.movement_collide()
         self.player.draw(self.display_surface)
         self.tiles_group.draw(self.display_surface)
