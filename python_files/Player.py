@@ -16,21 +16,21 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.5
         self.hold = 0
         self.jump_speed = -10
-        self.Anime = Animation()
+        self.anime = Animation()
 
     def get_input(self, held, world):
         keys = pygame.key.get_pressed()
         ground = self.on_ground(world)
         if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]) and ground:
             self.direction.x = -1
-            self.image = pygame.image.load(self.Anime.launch_gif("running_right","dwarf",2,.1))
+            self.image = pygame.image.load(self.anime.launch_gif("running_right", "dwarf", 2, .1))
         elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
             self.direction.x = 1
-            self.image = pygame.image.load(self.Anime.launch_gif("running_right","dwarf",2,.1))
+            self.image = pygame.image.load(self.anime.launch_gif("running_right", "dwarf", 2, .1))
         elif ground:
             self.direction.x = 0
             if not held:
-                self.image = pygame.image.load(self.Anime.launch_gif("static_dwarf","dwarf",2, .03))
+                self.image = pygame.image.load(self.anime.launch_gif("static_dwarf", "dwarf", 2, .03))
 
     def jump1(self, hold_value):
         self.direction.y = -6 - hold_value

@@ -13,5 +13,4 @@ class Button:
         self.dimension = dimension
 
     def draw(self):
-        #self.screen.blit(self)
-        return pygame.draw.rect(self.screen,self.color,(self.position,self.dimension),0)
+        return pygame.draw.rect(self.screen, self.color, (self.position, self.dimension), 0)

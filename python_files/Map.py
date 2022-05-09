@@ -1,5 +1,6 @@
 from Tiles import Tile
 from settings import *
+from Scenery import *
 from Player import Player
 
 
@@ -12,6 +13,9 @@ class Map:
     def setup_level(self, layout):
         self.tiles_group = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
+        self.beer_group = pygame.sprite.GroupSingle()
+        self.flower_group = pygame.sprite.Group()
+        self.sword_group = pygame.sprite.Group()
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
                 if cell == "G":
@@ -34,7 +38,25 @@ class Map:
                     y = row_index * 60
                     player_sprite = Player((x, y - 60))
                     self.player.add(player_sprite)
+                if cell == "B":
+                    x = col_index * 60
+                    y = row_index * 60
+                    self.beer = Scenery((x, y))
+                    self.beer_group.add(self.beer)
+                if cell == "F":
+                    x = col_index * 60
+                    y = row_index * 60
+                    self.flower = Scenery((x, y))
+                    self.flower_group.add(self.flower)
+                if cell == "S":
+                    x = col_index * 60
+                    y = row_index * 60
+                    self.sword = Scenery((x, y))
+                    self.sword_group.add(self.sword)
         self.tiles_group.update("y", -60 * len(map_list) + screen_height)
+        self.beer_group.update("y", -60 * len(map_list) + screen_height)
+        self.sword_group.update("y", -60 * len(map_list) + screen_height)
+        self.flower_group.update("y", -60 * len(map_list) + screen_height)
         self.player.update(-60 * len(map_list) + screen_height, 0, False, self)
 
     def movement_collide(self):
@@ -59,9 +81,19 @@ class Map:
                     player.direction.y = 0.75
 
 
-    def run(self, held, world, world_shift):
-        world.tiles_group.update("y", world_shift)
-        self.player.update(0, 0, held, world)
+    def run(self, held, world_shift):
+        self.tiles_group.update("y", world_shift)
+        self.player.update(0, 0, held, self)
+        self.beer_group.update("y", world_shift)
+        self.flower_group.update("y", world_shift)
+        self.sword_group.update("y", world_shift)
+        self.beer.display("beer", "beer", 20, 0.8)
+        self.sword.display("sword", "sword", 3, 0.08)
+        for i in self.flower_group.sprites():
+            i.display("flower", "flower", 2, 0.02)
         self.movement_collide()
-        self.player.draw(self.display_surface)
+        self.beer_group.draw(self.display_surface)
+        self.flower_group.draw(self.display_surface)
+        self.sword_group.draw(self.display_surface)
         self.tiles_group.draw(self.display_surface)
+        self.player.draw(self.display_surface)

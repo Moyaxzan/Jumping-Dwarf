@@ -1,4 +1,5 @@
 import pygame
+from Animation import *
 
 
 class Tile(pygame.sprite.Sprite):
@@ -16,7 +17,6 @@ class Tile(pygame.sprite.Sprite):
             with open(r'../assets/tiles/cube_wall.png') as wall:
                 self.image = pygame.image.load(wall)
                 self.rect = self.image.get_rect(topleft=pos)
-
 
     def update(self, direction, shift):
         if direction == "y":

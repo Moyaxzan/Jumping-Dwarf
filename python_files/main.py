@@ -43,6 +43,7 @@ if __name__ == '__main__':
             if hold and (player.direction.y == player.gravity or player.direction.y == 0):
                 hold_value += 1
                 held = True
+                player.image = pygame.image.load(player.anime.launch_gif("stacking_dwarf", "dwarf", 1, 0))
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -65,5 +66,4 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 play_the_game = False
 
-
-        world.run(held, world, worldshift)
+        world.run(held, worldshift)
