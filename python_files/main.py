@@ -24,7 +24,7 @@ if __name__ == '__main__':
             play_the_game = True
         worldshift = 0
         pygame.display.update()
-        screen.fill("cyan")
+        screen.fill("#6FE5FE")
         clock.tick(60)
         events = pygame.event.get()
         player = world.player.sprite
