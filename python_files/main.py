@@ -5,10 +5,13 @@ from Map import *
 if __name__ == '__main__':
     # Pygame init
     pygame.init()
+    icon = pygame.image.load(r'../assets/icon.png')
+    pygame.display.set_icon(icon)
     pygame.display.set_caption("Jumping Dwarf")
-    screen = pygame.display.set_mode((screen_width, screen_height))
     clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((screen_width, screen_height))
     world = Map(map_list, screen)
+    pygame.event.set_blocked(pygame.MOUSEMOTION)
     hold = False
     hold_value = 0
     pressed = False
@@ -21,7 +24,7 @@ if __name__ == '__main__':
             play_the_game = True
         worldshift = 0
         pygame.display.update()
-        screen.fill("black")
+        screen.fill("cyan")
         clock.tick(60)
         events = pygame.event.get()
         player = world.player.sprite
@@ -40,7 +43,7 @@ if __name__ == '__main__':
                 pygame.quit()
                 sys.exit()
 
-            if hold and (player.direction.y == player.gravity or player.direction.y == 0):
+            if hold and (player.on_ground(world)):
                 hold_value += 1
                 held = True
                 player.image = pygame.image.load(player.anime.launch_gif("stacking_dwarf", "dwarf", 1, 0))

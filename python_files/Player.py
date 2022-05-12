@@ -23,20 +23,25 @@ class Player(pygame.sprite.Sprite):
         ground = self.on_ground(world)
         if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]) and ground:
             self.direction.x = -1
-            self.image = pygame.image.load(self.anime.launch_gif("running_right", "dwarf", 2, .1))
+            self.image = pygame.image.load(self.anime.launch_gif("running_left", "dwarf", 2, .1))
         elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
             self.direction.x = 1
             self.image = pygame.image.load(self.anime.launch_gif("running_right", "dwarf", 2, .1))
+
         elif ground:
             self.direction.x = 0
             if not held:
                 self.image = pygame.image.load(self.anime.launch_gif("static_dwarf", "dwarf", 2, .03))
+        elif not ground and self.direction.y > 18:
+            self.image = pygame.image.load(self.anime.launch_gif("falling_dwarf", "dwarf", 2, .1))
+
 
     def jump1(self, hold_value):
         self.direction.y = -6 - hold_value
 
     def apply_gravity(self):
-        self.direction.y += self.gravity
+        if self.direction.y < 25:
+            self.direction.y += self.gravity
 
     def update(self, shift_y, shift_x, held, world):
         self.get_input(held, world)
@@ -58,6 +63,9 @@ class Player(pygame.sprite.Sprite):
 
     def get_y(self):
         return self.rect.centery
+
+    def get_x(self):
+        return self.rect.centerx
 
     def set_y(self, y):
         self.rect.centery = y

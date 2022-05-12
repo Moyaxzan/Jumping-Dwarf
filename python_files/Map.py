@@ -67,9 +67,16 @@ class Map:
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
                     player.direction.x = -(player.direction.x) * 0.5
+                    if not player.on_ground(self):
+                        self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_right", "dwarf", 2, .1))
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
+                    # Presque stylée sah
+                    # player.rect = player.image.get_rect(topleft=player.rect.topleft)
                     player.direction.x = -(player.direction.x) * 0.5
+                    if not player.on_ground(self):
+                        self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_left", "dwarf", 2, .1))
+
         player.rect.y += player.direction.y
         for sprite in self.tiles_group.sprites():
             if sprite.rect.colliderect(player):
