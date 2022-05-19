@@ -11,7 +11,6 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((screen_width, screen_height))
     world = Map(map_list, screen)
-    pygame.event.set_blocked(pygame.MOUSEMOTION)
     hold = False
     hold_value = 0
     pressed = False
@@ -22,6 +21,7 @@ if __name__ == '__main__':
         if not play_the_game:
             Menu(screen)
             play_the_game = True
+        pygame.event.set_blocked(pygame.MOUSEMOTION)
         worldshift = 0
         pygame.display.update()
         screen.fill("cyan")

@@ -1,21 +1,30 @@
 from sys import exit
+import pygame.transform
+from Animation import *
 from Buttons import *
 
 
 def Menu(screen):
-    with open("../assets/bg/menu.gif") as bg:
-        display = pygame.image.load(bg)
-        display = pygame.transform.scale(display, (screen_width, screen_height))
+    Anime = Animation()
     clock = pygame.time.Clock()
     stay_in_menu = True
+
     while stay_in_menu:
-        pygame.display.update()
-        clock.tick(30)
-
-        start_button = Button.draw(Button(screen, (screen_width*0.363, screen_height*0.523), (400, 100), "red"))
-        quit_button = Button.draw(Button(screen, (screen_width*0.376, screen_height*0.657), (300, 100), "blue"))
+        display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.25))
+        display = pygame.transform.scale(display, (screen_width, screen_height))
+        with open("../assets/menu_bg/closed_door.png") as closed_door:
+                    door_display = pygame.image.load(closed_door)
+                    door_pos = (screen_width * 0.022,screen_height * 0.491)
+                    door_dims = (screen_width * 0.1, screen_height * 0.3)
+        start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
         screen.blit(display, (0, 0))
-
+        quit_button = Button.draw(Button(screen, (screen_width*0.3, screen_height*0.825), (300, 100), "blue"))
+        clock.tick(30)
+        if start_button.collidepoint(pygame.mouse.get_pos()):
+            with open("../assets/menu_bg/opened_door.png") as opened_door:
+                door_display = pygame.image.load(opened_door)
+                door_pos = (screen_width * 0.022, screen_height * 0.491)
+                door_dims = (screen_width * 0.1, screen_height * 0.3*1.075)
         events = pygame.event.get()
         for ev in events:
             if ev.type == pygame.QUIT or (ev.type == pygame.MOUSEBUTTONDOWN and quit_button.collidepoint(pygame.mouse.get_pos())):
@@ -23,6 +32,9 @@ def Menu(screen):
                 exit()
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
                 stay_in_menu = False
+        door_display = pygame.transform.scale(door_display,door_dims)
+        screen.blit(door_display,door_pos)
+        pygame.display.update()
     return stay_in_menu
 
 
