@@ -12,12 +12,12 @@ def Menu(screen):
     while stay_in_menu:
         display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.25))
         display = pygame.transform.scale(display, (screen_width, screen_height))
+        quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.25))
         with open("../assets/menu_bg/closed_door.png") as closed_door:
                     door_display = pygame.image.load(closed_door)
                     door_pos = (screen_width * 0.022,screen_height * 0.491)
                     door_dims = (screen_width * 0.1, screen_height * 0.3)
         start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
-        screen.blit(display, (0, 0))
         quit_button = Button.draw(Button(screen, (screen_width*0.3, screen_height*0.825), (300, 100), "blue"))
         clock.tick(30)
         if start_button.collidepoint(pygame.mouse.get_pos()):
@@ -33,7 +33,10 @@ def Menu(screen):
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
                 stay_in_menu = False
         door_display = pygame.transform.scale(door_display,door_dims)
+        quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))
+        screen.blit(display, (0,0))
         screen.blit(door_display,door_pos)
+        screen.blit(quit_animation,(-screen_width*.03, -screen_height*.07))
         pygame.display.update()
     return stay_in_menu
 
