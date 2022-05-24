@@ -1,6 +1,7 @@
 import pygame
 
 
+# Allows to create buttons for menu.
 class Button:
     def __init__(self, screen, position, dimension, color):
         self.screen = screen

@@ -5,26 +5,36 @@ from Buttons import *
 
 
 def Menu(screen):
+    pygame.mixer.init()
+    music_menu = pygame.mixer.Sound("../audio/leumeunu.wav")
+    pygame.mixer.Sound.play(music_menu, loops=1000)
+    # Allows to animate the background.
     Anime = Animation()
     clock = pygame.time.Clock()
     stay_in_menu = True
 
+    # Iterates while the player hasn't open the door or leave the game.
     while stay_in_menu:
-        display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.2))
+        # Loads the differents needed animations.
+        display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.1))
         display = pygame.transform.scale(display, (screen_width, screen_height))
-        quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.2))
+        quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.15))
+        # Loads the closed door.
         with open("../assets/menu_bg/closed_door.png") as closed_door:
                     door_display = pygame.image.load(closed_door)
-                    door_pos = (screen_width * 0.022,screen_height * 0.491)
+                    door_pos = (screen_width * 0.022, screen_height * 0.491)
                     door_dims = (screen_width * 0.1, screen_height * 0.3)
+        # Creates the start and quit buttons.
         start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
         quit_button = Button.draw(Button(screen, (screen_width*0.3, screen_height*0.825), (300, 100), "blue"))
         clock.tick(30)
+        # Loads the opened door.
         if start_button.collidepoint(pygame.mouse.get_pos()):
             with open("../assets/menu_bg/opened_door.png") as opened_door:
                 door_display = pygame.image.load(opened_door)
                 door_pos = (screen_width * 0.022, screen_height * 0.491)
                 door_dims = (screen_width * 0.1, screen_height * 0.3*1.075)
+        # Displays door and quit button.
         door_display = pygame.transform.scale(door_display,door_dims)
         quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))
         screen.blit(display, (0,0))
@@ -32,11 +42,16 @@ def Menu(screen):
         screen.blit(quit_animation,(-screen_width*.03, -screen_height*.07))
         events = pygame.event.get()
         for ev in events:
+            # Checks if the player tried to close the window or clicked on quit button.
             if ev.type == pygame.QUIT or (ev.type == pygame.MOUSEBUTTONDOWN and quit_button.collidepoint(pygame.mouse.get_pos())):
                 pygame.quit()
                 exit()
+            # Checks if the player clicked on the door, and if so starts the game.
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
                 stay_in_menu = False
+                pygame.mixer.fadeout(2000)
+                music_game = pygame.mixer.Sound("../audio/leujeu.wav")
+                pygame.mixer.Sound.play(music_game, loops=10000000)
         pygame.display.update()
     return stay_in_menu
 
@@ -67,13 +82,14 @@ def fade_transi(screen,in_out):
 
 
 
+# List from which we get the map in map.py.
 map_list = [
+    "s                      W",
     "                       W",
     "                       W",
     "                       W",
     "                       W",
-    "                       W",
-    "W                   BP W",
+    "W                   B  W",
     "W                  GGGW",
     "W                     W",
     "W                     W",
@@ -139,9 +155,9 @@ map_list = [
     "W                     W",
     "W                     W",
     "W        GG           W",
-    "W                     W",
-    "W                     W",
-    "W F                   W",
+    "W                   N W",
+    "W                  T  W",
+    "WO                    W",
     "WGGGGG                W",
     "WDDDD             GG  W",
     "WDDD                  W",
@@ -171,11 +187,12 @@ map_list = [
     "W                     W",
     "W                     W",
     "W   GGGGG             W",
-    "W                     W",
+    "W                P    W",
     "W                     W",
     "W    F                W",
     "DGGGGGGGGGGGGGGGGGGGGGD"]
 
 
+# Settings for the window to be sized correctly
 screen_width = 60 * len(map_list[len(map_list) - 1])
 screen_height = 12 * 60
