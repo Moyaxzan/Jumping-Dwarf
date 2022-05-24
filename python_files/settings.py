@@ -5,17 +5,20 @@ from Buttons import *
 
 
 def Menu(screen):
+    pygame.mixer.init()
+    music_menu = pygame.mixer.Sound("../audio/leumeunu.wav")
+    pygame.mixer.Sound.play(music_menu, loops=1000)
     Anime = Animation()
     clock = pygame.time.Clock()
     stay_in_menu = True
 
     while stay_in_menu:
-        display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.25))
+        display = pygame.image.load(Anime.launch_gif("sprite_menu", "menu_bg", 6, .25))
         display = pygame.transform.scale(display, (screen_width, screen_height))
-        quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.25))
+        quit_animation = pygame.image.load(Anime.launch_gif("quit", "menu_bg", 6, .25))
         with open("../assets/menu_bg/closed_door.png") as closed_door:
                     door_display = pygame.image.load(closed_door)
-                    door_pos = (screen_width * 0.022,screen_height * 0.491)
+                    door_pos = (screen_width * 0.022, screen_height * 0.491)
                     door_dims = (screen_width * 0.1, screen_height * 0.3)
         start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
         quit_button = Button.draw(Button(screen, (screen_width*0.3, screen_height*0.825), (300, 100), "blue"))
@@ -32,6 +35,9 @@ def Menu(screen):
                 exit()
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
                 stay_in_menu = False
+                pygame.mixer.fadeout(2000)
+                music_game = pygame.mixer.Sound("../audio/leujeu.wav")
+                pygame.mixer.Sound.play(music_game, loops=10000000)
         door_display = pygame.transform.scale(door_display,door_dims)
         quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))
         screen.blit(display, (0,0))

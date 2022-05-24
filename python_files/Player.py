@@ -2,7 +2,7 @@ import pygame.math
 from math import cos, tan
 from Animation import *
 from Tiles import *
-
+from random import randint
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -37,6 +37,9 @@ class Player(pygame.sprite.Sprite):
 
 
     def jump1(self, hold_value):
+        rand = randint(1, 5)
+        sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
+        pygame.mixer.Sound.play(sound_jump)
         self.direction.y = -6 - hold_value
 
     def apply_gravity(self):

@@ -17,6 +17,7 @@ if __name__ == '__main__':
     held = False
     play_the_game = False
 
+
     while True:
         if not play_the_game:
             Menu(screen)
