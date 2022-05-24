@@ -1,6 +1,6 @@
 import pygame.math
 from Tiles import *
-
+from random import randint
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -37,6 +37,9 @@ class Player(pygame.sprite.Sprite):
 
     # Makes the play jump, the longer he holds space the higher because of "hold_value" variable.
     def jump1(self, hold_value):
+        rand = randint(1, 5)
+        sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
+        pygame.mixer.Sound.play(sound_jump)
         self.direction.y = -6 - hold_value
 
     # Apply gravity, called in each frame by update().

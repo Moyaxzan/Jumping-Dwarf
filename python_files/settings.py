@@ -5,6 +5,9 @@ from Buttons import *
 
 
 def Menu(screen):
+    pygame.mixer.init()
+    music_menu = pygame.mixer.Sound("../audio/leumeunu.wav")
+    pygame.mixer.Sound.play(music_menu, loops=1000)
     # Allows to animate the background.
     Anime = Animation()
     clock = pygame.time.Clock()
@@ -19,7 +22,7 @@ def Menu(screen):
         # Loads the closed door.
         with open("../assets/menu_bg/closed_door.png") as closed_door:
                     door_display = pygame.image.load(closed_door)
-                    door_pos = (screen_width * 0.022,screen_height * 0.491)
+                    door_pos = (screen_width * 0.022, screen_height * 0.491)
                     door_dims = (screen_width * 0.1, screen_height * 0.3)
         # Creates the start and quit buttons.
         start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
@@ -40,6 +43,9 @@ def Menu(screen):
             # Checks if the player clicked on the door, and if so starts the game.
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
                 stay_in_menu = False
+                pygame.mixer.fadeout(2000)
+                music_game = pygame.mixer.Sound("../audio/leujeu.wav")
+                pygame.mixer.Sound.play(music_game, loops=10000000)
         # Displays door and quit button.
         door_display = pygame.transform.scale(door_display,door_dims)
         quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))

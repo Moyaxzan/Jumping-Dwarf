@@ -19,6 +19,7 @@ if __name__ == '__main__':
     held = False
     play_the_game = False
 
+
     while True:
         # Force the player to go into menu when he starts the program.
         if not play_the_game:
