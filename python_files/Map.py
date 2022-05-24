@@ -117,8 +117,8 @@ class Map:
         self.nani.display("nani","nani", 3, 0.1)
         self.wazo.display("wazo","wazo", 4, 0.08)
         self.sun.display("sun","sun", 6, 0.04)
-        for i in self.flower_group.sprites():
-            i.display("flower", "flower", 2, 0.02)
+        for each_flower in self.flower_group.sprites():
+            each_flower.display("flower", "flower", 2, 0.02)
         self.movement_collide()
         self.beer_group.draw(self.display_surface)
         self.flower_group.draw(self.display_surface)

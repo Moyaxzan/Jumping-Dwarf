@@ -25,6 +25,7 @@ if __name__ == '__main__':
         if not play_the_game:
             Menu(screen)
             play_the_game = True
+            fade_transi(screen, "in", 3)
         worldshift = 0
         pygame.display.update()
         screen.fill("cyan")
@@ -56,7 +57,6 @@ if __name__ == '__main__':
                 player.image = pygame.image.load(player.anime.launch_gif("stacking_dwarf", "dwarf", 1, 0))
 
             if event.type == pygame.KEYDOWN:
-                #
                 if event.key == pygame.K_SPACE:
                     hold = True
                     pressed = True
@@ -75,7 +75,7 @@ if __name__ == '__main__':
             if not hold and pressed and (player.direction.y == player.gravity or player.direction.y == 0):
                 # Checks if the player is on ground.
                 if player.on_ground(world):
-                    player.jump1(hold_value)
+                    player.jump(hold_value)
                 hold_value = 0
                 pressed = False
                 hold = False
@@ -87,4 +87,5 @@ if __name__ == '__main__':
         world.run(held, worldshift)
 
         if player.rect.colliderect(world.beer):
+            fade_transi(screen, "out", 3)
             ending(screen)

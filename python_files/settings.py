@@ -15,7 +15,7 @@ def Menu(screen):
 
     # Iterates while the player hasn't open the door or leave the game.
     while stay_in_menu:
-        # Loads the differents needed animations.
+        # Loads the different needed animations.
         display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.1))
         display = pygame.transform.scale(display, (screen_width, screen_height))
         quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.15))
@@ -48,6 +48,7 @@ def Menu(screen):
                 exit()
             # Checks if the player clicked on the door, and if so starts the game.
             if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
+                fade_transi(screen,"out",1)
                 stay_in_menu = False
                 pygame.mixer.fadeout(2000)
                 music_game = pygame.mixer.Sound("../audio/leujeu.wav")
@@ -56,6 +57,7 @@ def Menu(screen):
     return stay_in_menu
 
 def ending(screen):
+    fade_transi(screen,"in",3)
     while True:
         end = pygame.transform.scale(pygame.image.load(r"../assets/divers/end.png"), (screen_width, screen_height))
         screen.blit(end, (0, 0))
@@ -66,19 +68,18 @@ def ending(screen):
                 exit()
         pygame.display.update()
 
-def fade_transi(screen,in_out):
-    done = False
-    alpha = 0
-    while not done:
-        if alpha > 255 or alpha < 0:
-            in_out *= -1
-            done = True
-        alpha += in_out
-        screen.fill((0,0,0))
-        screen.set_alpha(alpha)
-        screen.blit(screen,(0,0))
-        pygame.display.flip()
-        pygame.time.delay(20)
+def fade_transi(screen,in_out,duration):
+    fade = pygame.Surface((screen_width,screen_height)).convert()
+    fade.fill((0,0,0))
+    if in_out == "in":
+        params = (100,1)
+    else:
+        params = (0,-1)
+    for alpha in range(100):
+        fade.set_alpha(params[0] - params[1]*alpha)
+        screen.blit(fade,(0,0))
+        pygame.display.update()
+        pygame.time.wait(duration)
 
 
 
