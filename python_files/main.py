@@ -1,11 +1,15 @@
 import sys
+import time
+
+import pygame
+
 from Map import *
 
 
 if __name__ == '__main__':
     # Pygame init
     pygame.init()
-    icon = pygame.image.load(r'../assets/icon.png')
+    icon = pygame.image.load(r'../assets/divers/icon.png')
     pygame.display.set_icon(icon)
     pygame.display.set_caption("Jumping Dwarf")
     clock = pygame.time.Clock()
@@ -62,7 +66,7 @@ if __name__ == '__main__':
 
             if not hold and pressed and (player.direction.y == player.gravity or player.direction.y == 0):
                 if player.on_ground(world):
-                    player.jump1(hold_value)
+                    player.jump(hold_value)
                 hold_value = 0
                 pressed = False
                 hold = False
@@ -70,3 +74,6 @@ if __name__ == '__main__':
                 play_the_game = False
 
         world.run(held, worldshift)
+
+        if player.rect.colliderect(world.beer):
+            ending(screen)

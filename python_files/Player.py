@@ -36,7 +36,7 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(self.anime.launch_gif("falling_dwarf", "dwarf", 2, .1))
 
 
-    def jump1(self, hold_value):
+    def jump(self, hold_value):
         self.direction.y = -6 - hold_value
 
     def apply_gravity(self):
@@ -56,10 +56,10 @@ class Player(pygame.sprite.Sprite):
                 return True
         return False
 
-    def jump(self, hold, x, height):
+    def jump1(self, hold, x, height):
         angle = hold * 120
         g = 9.81
-        y = -(g / 2 * vect * cos(angle)**2) * x**2 + tan(angle) * x + height
+        self.direction.y = -(g / 2 * 50 * cos(angle)**2) * x**2 + tan(angle) * x + height
 
     def get_y(self):
         return self.rect.centery
