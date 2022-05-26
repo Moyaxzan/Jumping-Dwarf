@@ -17,23 +17,27 @@ if __name__ == '__main__':
     hold_value = 0
     pressed = False
     held = False
-    play_the_game = False
+    go_to_menu = True
+    in_settings = False
 
 
     while True:
-        # Force the player to go into menu when he starts the program.
-        if not play_the_game:
-            Menu(screen)
-            play_the_game = True
+        # Forces the player to go through the menu when he starts the program.
+        if go_to_menu:
+            Homepage(screen)
+            go_to_menu = False
             fade_transi(screen, "in", 3)
         worldshift = 0
         pygame.display.update()
+        cog_button = pygame.draw.rect(screen,"purple", ((screen_width-120,10),(50,50)))
         screen.fill("cyan")
+        cog = pygame.transform.scale(pygame.image.load("../assets/settings/settings_icone.png"), (50,50))
+        screen.blit(cog, (screen_width-120,10))
         clock.tick(60)
         events = pygame.event.get()
         player = world.player.sprite
 
-        # Allow the camera to move along the player.
+        # Allows the camera to move along the player.
         if player.get_y() < 0:
             worldshift = screen_height
             player.set_y(player.get_y() + screen_height)
@@ -45,12 +49,12 @@ if __name__ == '__main__':
         pygame.event.set_blocked(pygame.MOUSEMOTION)
         for event in events:
 
-            # Quit the game
+            # Quits the game.
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-            # Check if the player is on ground when he tries to jump, and if so load the right animation.
+            # Checks if the player is on ground when he tries to jump, and if so load the right animation.
             if hold and (player.on_ground(world)):
                 hold_value += 1
                 held = True
@@ -75,17 +79,23 @@ if __name__ == '__main__':
             if not hold and pressed and (player.direction.y == player.gravity or player.direction.y == 0):
                 # Checks if the player is on ground.
                 if player.on_ground(world):
-                    player.jump(hold_value)
+                    player.jump(hold_value, in_settings)
                 hold_value = 0
                 pressed = False
                 hold = False
-            # If the player press escape, he returns into menu.
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                play_the_game = False
+            # If the player presses escape or clicks the cog, he opens the settings screen.
+            if player.on_ground(world) and ((event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE) or (event.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos()))):
+                in_settings = True
+                hold, held, hold_value = False, False, 0
 
-        # Makes the world run, called at each frame.
-        world.run(held, worldshift)
-
+        # Launches the ending screen when the top is reached.
         if player.rect.colliderect(world.beer):
             fade_transi(screen, "out", 3)
             ending(screen)
+        # Makes the world run, called at each frame.
+        world.run(held, worldshift, in_settings)
+
+        if in_settings:
+            player.direction.x = 0
+            player.direction.y = 0
+            in_settings, go_to_menu = settings(screen, in_settings, go_to_menu)

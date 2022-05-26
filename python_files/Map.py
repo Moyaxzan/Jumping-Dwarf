@@ -12,9 +12,9 @@ class Map:
 
     def setup_level(self, layout):
         # Create several groups to put every different tiles in them.
-        self.tiles_group = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
         self.beer_group = pygame.sprite.GroupSingle()
+        self.tiles_group = pygame.sprite.Group()
         self.flower_group = pygame.sprite.Group()
         self.sword_group = pygame.sprite.Group()
         self.tourist_group = pygame.sprite.Group()
@@ -71,7 +71,7 @@ class Map:
         self.tourist_group.update("y", -60 * len(map_list) + screen_height + 30)
         self.nani_group.update("y", -60 * len(map_list) + screen_height + 35)
         self.nani_group.update("x", -20)
-        self.player.update(-60 * len(map_list) + screen_height, 0, False, self)
+        self.player.update(-60 * len(map_list) + screen_height, 0, False, self, False)
 
     # Handle collision with player.
     def movement_collide(self):
@@ -81,12 +81,12 @@ class Map:
             if sprite.rect.colliderect(player):
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
-                    player.direction.x = -(player.direction.x) * 0.5
+                    player.direction.x = -player.direction.x * 0.5
                     if not player.on_ground(self):
                         self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_right", "dwarf", 2, .1))
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
-                    player.direction.x = -(player.direction.x) * 0.5
+                    player.direction.x = -player.direction.x * 0.5
                     if not player.on_ground(self):
                         self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_left", "dwarf", 2, .1))
 
@@ -101,9 +101,9 @@ class Map:
                     player.direction.y = 0.75
 
     # Updates every group then draw them on screen, called each frame by main.py.
-    def run(self, held, world_shift):
+    def run(self, held, world_shift, in_settings):
         self.tiles_group.update("y", world_shift)
-        self.player.update(0, 0, held, self)
+        self.player.update(0, 0, held, self, in_settings)
         self.beer_group.update("y", world_shift)
         self.flower_group.update("y", world_shift)
         self.sword_group.update("y", world_shift)
