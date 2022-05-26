@@ -39,9 +39,12 @@
 
 ## About The Project
 
-We are 6 L1 students from EFREI Paris - School of Generalist Digital Engineering
+We are 6 L1 students from EFREI Paris - School of Generalist Digital Engineering.
+
 We had to do a game for our 2nd semester that has to contain a trajectory formula.
-We decided to Create Jumping Dwarf because we have been inspired by the Game [Jumpking](https://store.steampowered.com/app/1061090/Jump_King/)
+
+We decided to Create Jumping Dwarf because we have been inspired by the Game [Jumpking](https://store.steampowered.com/app/1061090/Jump_King/).
+
 Some of us were really motivated about it, and that is what allowed us to have a complete game that we like containing music, nice visuals and good feelings when playing. Because we believe that if we enjoy playing the game, others will.
 
 We hope you will enjoy playing the game as much as we do !
@@ -51,12 +54,8 @@ We hope you will enjoy playing the game as much as we do !
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * python
   Down Python 3.7 or earlier versions at https://www.python.org/downloads/
   
