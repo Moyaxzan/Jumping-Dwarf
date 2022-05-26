@@ -37,11 +37,12 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load(self.anime.launch_gif("falling_dwarf", "dwarf", 2, .1))
 
     # Makes the play jump, the longer he holds space the higher because of "hold_value" variable.
-    def jump(self, hold_value):
-        rand = randint(1, 5)
-        sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
-        pygame.mixer.Sound.play(sound_jump)
-        self.direction.y = -6 - hold_value
+    def jump(self, hold_value, in_settings):
+        if not in_settings:
+            rand = randint(1, 5)
+            sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
+            pygame.mixer.Sound.play(sound_jump)
+            self.direction.y = -6 - hold_value
 
     # Apply gravity, called in each frame by update().
     def apply_gravity(self):
@@ -49,12 +50,13 @@ class Player(pygame.sprite.Sprite):
             self.direction.y += self.gravity
 
     # Apply every changes needed to the player, called in each frame by the map.
-    def update(self, shift_y, shift_x, held, world):
-        self.get_input(held, world)
-        if shift_y != 0 or shift_x != 0:
-            self.rect.y += shift_y
-            self.rect.x += shift_x
-        self.apply_gravity()
+    def update(self, shift_y, shift_x, held, world, in_settings):
+        if not in_settings:
+            self.get_input(held, world)
+            if shift_y != 0 or shift_x != 0:
+                self.rect.y += shift_y
+                self.rect.x += shift_x
+            self.apply_gravity()
 
     # Returns True if the player is on ground.
     def on_ground(self, world):
