@@ -27,6 +27,8 @@ if __name__ == '__main__':
             Homepage(screen)
             go_to_menu = False
             fade_transi(screen, "in", 3)
+
+        # Setting the basic components
         worldshift = 0
         pygame.display.update()
         cog_button = pygame.draw.rect(screen,"purple", ((screen_width-120,10),(50,50)))
@@ -51,11 +53,11 @@ if __name__ == '__main__':
 
             # Quits the game.
             if event.type == pygame.QUIT:
-                print("You fell %d times", player.falling_count)
+                print("You fell %i times." %player.falling_count)
                 pygame.quit()
                 sys.exit()
 
-            # Checks if the player is on ground when he tries to jump, and if so load the right animation.
+            # Checks if the player is on ground when he tries to jump, and if so load the appropriate animation.
             if hold and (player.on_ground(world)):
                 hold_value += 1
                 held = True
@@ -90,6 +92,7 @@ if __name__ == '__main__':
         if player.rect.colliderect(world.beer):
             fade_transi(screen, "out", 3)
             ending(screen)
+
         # Makes the world run, called at each frame.
         world.run(held, worldshift, in_settings)
 

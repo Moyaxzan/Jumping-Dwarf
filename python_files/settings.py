@@ -14,7 +14,7 @@ def Homepage(screen):
     stay_in_menu = True
     stay_in_settings = False
 
-    # Iterates while the player hasn't open the door or leave the game.
+    # Iterates while the player hasn't opened the door or leaves the game.
     while stay_in_menu:
         # Loads the different needed animations.
         display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.1))
@@ -37,7 +37,7 @@ def Homepage(screen):
                 door_display = pygame.image.load(opened_door)
                 door_pos = (screen_width * 0.022, screen_height * 0.491)
                 door_dims = (screen_width * 0.1, screen_height * 0.3*1.075)
-        # Displays door and quit button.
+        # Displays the door and quit buttons.
         door_display = pygame.transform.scale(door_display,door_dims)
         quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))
         screen.blit(display, (0,0))
@@ -46,18 +46,19 @@ def Homepage(screen):
         screen.blit(quit_animation,(-screen_width*.03, -screen_height*.07))
         events = pygame.event.get()
         for ev in events:
-            # Checks if the player tried to close the window or clicked on quit button.
+            # Checks if the player tried to close the window or clicked on the quit button.
             if ev.type == pygame.QUIT or (not stay_in_settings and ev.type == pygame.MOUSEBUTTONDOWN and quit_button.collidepoint(pygame.mouse.get_pos())):
                 pygame.quit()
                 exit()
             # Checks if the player clicked on the door, and if so, starts the game.
             if not stay_in_settings:
                 if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
-                    fade_transi(screen,"out",1)
+                    fade_transi(screen,"out",5)
                     stay_in_menu = False
                     pygame.mixer.fadeout(2000)
                     music_game = pygame.mixer.Sound("../audio/leujeu.wav")
                     pygame.mixer.Sound.play(music_game, loops=10000000)
+                # Interacting with the settings from the homepage.
                 """if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE) or (ev.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos())):
                     stay_in_settings = True
         if stay_in_settings:
@@ -66,12 +67,13 @@ def Homepage(screen):
 
     return stay_in_menu
 
-# Displays the ending screen
+# Displays the ending screen.
 def ending(screen):
     pygame.mixer.stop()
     end_music = pygame.mixer.Sound("../audio/end.wav")
     pygame.mixer.Sound.play(end_music)
     fade_transi(screen, "in", 3)
+    # The game is finished so the user can simply close the program.
     while True:
         end = pygame.transform.scale(pygame.image.load(r"../assets/divers/ending_screen.png"), (screen_width, screen_height))
         screen.blit(end, (0, 0))
@@ -82,7 +84,7 @@ def ending(screen):
                 exit()
         pygame.display.update()
 
-# Displays and allows the user to modify basic settings
+# Displays and allows the user to modify basic settings.
 def settings(screen, stay_in_settings, go_to_menu):
     pygame.draw.rect(screen, "green", ((screen_width*.135, screen_height*.135),(screen_width*.75,screen_height*.75)))
     return_home_button = pygame.draw.rect(screen,"white", ((screen_width*.416, screen_height*.699), (screen_width*.2,screen_height*.14)))
@@ -90,19 +92,21 @@ def settings(screen, stay_in_settings, go_to_menu):
     settings_bg = pygame.transform.scale(pygame.image.load("../assets/settings/settings_bg.png"),(screen_width*.767,screen_height*.781))
     screen.blit(settings_bg,(screen_width*.135, screen_height*.105))
     events = pygame.event.get()
+    # Quits the menu in 2 cases : the top-right cross or escape key is hit.
     for event in events:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.MOUSEBUTTONDOWN and quit_settings_button.collidepoint(pygame.mouse.get_pos()):
             stay_in_settings = False
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        # Returns to menu if he hits the according button.
         if event.type == pygame.MOUSEBUTTONDOWN and return_home_button.collidepoint(pygame.mouse.get_pos()):
             stay_in_settings = False
             go_to_menu = True
     pygame.display.update()
     return stay_in_settings,go_to_menu
 
-# Creates a fading transition from/to black screen
+# Creates a fading transition from/to black screen.
 def fade_transi(screen,in_out,duration):
     fade = pygame.Surface((screen_width,screen_height)).convert()
     fade.fill((0,0,0))
@@ -185,7 +189,7 @@ map_list = [
     "W                     W",
     "W                     W",
     "W                     W",
-    "W                  PWWW",
+    "W                   WWW",
     "W                WWWWWW",
     "WWWW             WWWWWW",
     "W                     W",
@@ -223,7 +227,7 @@ map_list = [
     "W                     W",
     "W   GGGGG             W",
     "W                     W",
-    "W                     W",
+    "W                  P  W",
     "W                     W",
     "W    F          R     W",
     "DGGGGGGGGGGGGGGGGGGGGGD"]
