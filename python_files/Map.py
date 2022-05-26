@@ -122,6 +122,7 @@ class Map:
 
     # Updates every group then draw them on screen, called each frame by main.py.
     def run(self, held, world_shift, in_settings):
+
         self.tiles_group.update("y", world_shift)
         self.player.update(0, 0, held, self, in_settings)
         self.beer_group.update("y", world_shift)
@@ -135,6 +136,7 @@ class Map:
         self.oiseaux2_group.update("y", world_shift)
         self.stone_group.update("y", world_shift)
         self.cloud_group.update("y", world_shift)
+
         self.beer.display("beer", "beer", 20, 0.8)
         self.sword.display("sword", "sword", 3, 0.08)
         self.tourist.display("tourist", "tourist", 8, 0.06)
@@ -142,6 +144,7 @@ class Map:
         self.wazo.display("wazo","wazo", 4, 0.08)
         self.sun.display("sun","sun", 6, 0.04)
         self.stone.display("rock","divers", 1, 0)
+
         for each_oiseau1 in self.oiseaux1_group.sprites():
             each_oiseau1.display("oiseaux","oiseaux1", 2, 0.05)
         for each_oiseau2 in self.oiseaux2_group.sprites():
@@ -151,6 +154,7 @@ class Map:
         for each_cloud in self.cloud_group.sprites():
             each_cloud.display("cloud", "cloud", 2, 0.02)
         self.movement_collide()
+
         self.cloud_group.draw(self.display_surface)
         self.beer_group.draw(self.display_surface)
         self.flower_group.draw(self.display_surface)
