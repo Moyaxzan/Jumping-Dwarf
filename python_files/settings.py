@@ -5,6 +5,7 @@ from Animation import *
 
 def Homepage(screen):
     pygame.mixer.init()
+    pygame.mixer.stop()
     music_menu = pygame.mixer.Sound("../audio/homepage.wav")
     pygame.mixer.Sound.play(music_menu, loops=1000)
     # Allows to animate the background.
@@ -19,8 +20,8 @@ def Homepage(screen):
         display = pygame.image.load(Anime.launch_gif("sprite_menu","menu_bg",6,.1))
         display = pygame.transform.scale(display, (screen_width, screen_height))
         quit_animation = pygame.image.load(Anime.launch_gif("quit","menu_bg",6,.15))
-        cog_button = pygame.draw.rect(screen,"purple", ((screen_width-120,10),(50,50)))
-        cog = pygame.transform.scale(pygame.image.load("../assets/settings/settings_icone.png"), (50,50))
+        """cog_button = pygame.draw.rect(screen,"purple", ((screen_width-120,10),(50,50)))
+        cog = pygame.transform.scale(pygame.image.load("../assets/settings/settings_icone.png"), (50,50))"""
         # Loads the closed door.
         with open("../assets/menu_bg/closed_door.png") as closed_door:
                     door_display = pygame.image.load(closed_door)
@@ -40,7 +41,7 @@ def Homepage(screen):
         door_display = pygame.transform.scale(door_display,door_dims)
         quit_animation = pygame.transform.scale(quit_animation,(screen_height*1.7, screen_width*.7))
         screen.blit(display, (0,0))
-        screen.blit(cog, (screen_width-120,10))
+        """screen.blit(cog, (screen_width-120,10))"""
         screen.blit(door_display,door_pos)
         screen.blit(quit_animation,(-screen_width*.03, -screen_height*.07))
         events = pygame.event.get()
@@ -57,10 +58,10 @@ def Homepage(screen):
                     pygame.mixer.fadeout(2000)
                     music_game = pygame.mixer.Sound("../audio/leujeu.wav")
                     pygame.mixer.Sound.play(music_game, loops=10000000)
-                if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE) or (ev.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos())):
+                """if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE) or (ev.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos())):
                     stay_in_settings = True
         if stay_in_settings:
-            stay_in_settings, stay_in_menu = settings(screen, stay_in_settings, stay_in_menu)
+            stay_in_settings, stay_in_menu = settings(screen, stay_in_settings, stay_in_menu)"""
         pygame.display.update()
 
     return stay_in_menu
@@ -83,11 +84,14 @@ def ending(screen):
 
 # Displays and allows the user to modify basic settings
 def settings(screen, stay_in_settings, go_to_menu):
-    settings_bg = pygame.draw.rect(screen, "green", ((screen_width*.135, screen_height*.135),(screen_width*.75,screen_height*.75)))
-    return_home_button = pygame.draw.rect(screen,"white", ((screen_width*.48, screen_height*.7), (screen_width*.07,screen_height*.127)))
+    pygame.draw.rect(screen, "green", ((screen_width*.135, screen_height*.135),(screen_width*.75,screen_height*.75)))
+    return_home_button = pygame.draw.rect(screen,"white", ((screen_width*.416, screen_height*.699), (screen_width*.2,screen_height*.14)))
+    quit_settings_button = pygame.draw.rect(screen,"yellow", ((screen_width*.875, screen_height*.105), (screen_width*.025,screen_height*.055)))
+    settings_bg = pygame.transform.scale(pygame.image.load("../assets/settings/settings_bg.png"),(screen_width*.767,screen_height*.781))
+    screen.blit(settings_bg,(screen_width*.135, screen_height*.105))
     events = pygame.event.get()
     for event in events:
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.MOUSEBUTTONDOWN and quit_settings_button.collidepoint(pygame.mouse.get_pos()):
             stay_in_settings = False
         if event.type == pygame.QUIT:
             pygame.quit()

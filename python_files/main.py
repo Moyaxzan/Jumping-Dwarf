@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
             # Quits the game.
             if event.type == pygame.QUIT:
-                print("You falled %d times", player.falling_count)
+                print("You fell %d times", player.falling_count)
                 pygame.quit()
                 sys.exit()
 
