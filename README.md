@@ -56,10 +56,8 @@ We hope you will enjoy playing the game as much as we do !
 
 ### Prerequisites
 
-* Python
- ```sh
- Download Python 3.7 or earlier versions at https://www.python.org/downloads/
- ```
+* Python<br>
+     Download Python 3.7 or earlier versions at https://www.python.org/downloads/
 * pygame
  ```sh
  python3 -m pip install -U pygame --user
