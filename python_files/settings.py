@@ -5,6 +5,7 @@ from Animation import *
 
 def Homepage(screen):
     pygame.mixer.init()
+    pygame.mixer.stop()
     music_menu = pygame.mixer.Sound("../audio/homepage.wav")
     pygame.mixer.Sound.play(music_menu, loops=1000)
     # Allows to animate the background.
