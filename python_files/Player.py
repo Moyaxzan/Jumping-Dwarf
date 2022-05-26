@@ -22,10 +22,10 @@ class Player(pygame.sprite.Sprite):
     def get_input(self, held, world):
         keys = pygame.key.get_pressed()
         ground = self.on_ground(world)
-        if not held and (keys[pygame.K_LEFT] or keys[pygame.K_q]) and ground:
+        if not held and keys[pygame.K_q] and ground:
             self.direction.x = -1
             self.image = pygame.image.load(self.anime.launch_gif("running_left", "dwarf", 2, .1))
-        elif not held and (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and ground:
+        elif not held and keys[pygame.K_d] and ground:
             self.direction.x = 1
             self.image = pygame.image.load(self.anime.launch_gif("running_right", "dwarf", 2, .1))
 
