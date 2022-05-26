@@ -31,7 +31,7 @@ def Homepage(screen):
         quit_button = pygame.draw.rect(screen, "blue", ((screen_width*0.3, screen_height*0.825), (300, 100)))
         clock.tick(30)
         # Loads the opened door.
-        if start_button.collidepoint(pygame.mouse.get_pos()):
+        if not stay_in_settings and start_button.collidepoint(pygame.mouse.get_pos()):
             with open("../assets/menu_bg/opened_door.png") as opened_door:
                 door_display = pygame.image.load(opened_door)
                 door_pos = (screen_width * 0.022, screen_height * 0.491)
@@ -46,18 +46,19 @@ def Homepage(screen):
         events = pygame.event.get()
         for ev in events:
             # Checks if the player tried to close the window or clicked on quit button.
-            if ev.type == pygame.QUIT or (ev.type == pygame.MOUSEBUTTONDOWN and quit_button.collidepoint(pygame.mouse.get_pos())):
+            if ev.type == pygame.QUIT or (not stay_in_settings and ev.type == pygame.MOUSEBUTTONDOWN and quit_button.collidepoint(pygame.mouse.get_pos())):
                 pygame.quit()
                 exit()
             # Checks if the player clicked on the door, and if so, starts the game.
-            if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
-                fade_transi(screen,"out",1)
-                stay_in_menu = False
-                pygame.mixer.fadeout(2000)
-                music_game = pygame.mixer.Sound("../audio/leujeu.wav")
-                pygame.mixer.Sound.play(music_game, loops=10000000)
-            if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE) or (ev.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos())):
-                stay_in_settings = True
+            if not stay_in_settings:
+                if ev.type == pygame.MOUSEBUTTONDOWN and start_button.collidepoint(pygame.mouse.get_pos()):
+                    fade_transi(screen,"out",1)
+                    stay_in_menu = False
+                    pygame.mixer.fadeout(2000)
+                    music_game = pygame.mixer.Sound("../audio/leujeu.wav")
+                    pygame.mixer.Sound.play(music_game, loops=10000000)
+                if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE) or (ev.type == pygame.MOUSEBUTTONDOWN and cog_button.collidepoint(pygame.mouse.get_pos())):
+                    stay_in_settings = True
         if stay_in_settings:
             stay_in_settings, stay_in_menu = settings(screen, stay_in_settings, stay_in_menu)
         pygame.display.update()
