@@ -56,7 +56,7 @@ We hope you will enjoy playing the game as much as we do !
 
 ### Prerequisites
 
-* python <br>
+* python<br>
 Download Python 3.7 or earlier versions at https://www.python.org/downloads/
 * pygame
  ```sh
@@ -67,7 +67,7 @@ Download Python 3.7 or earlier versions at https://www.python.org/downloads/
  
 ### Installation
 
-Clone the repo
+Clone the repository 
 ```sh
 git clone https://github.com/your_username_/Project-Name.git
 ```
