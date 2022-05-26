@@ -91,6 +91,8 @@ Which means that you cannot move your character while you are not on the ground.
 
 In order to jump to the left you will need to hold the "Q" key while releasing you jump. Same process for the right side but this time you will need to press the "D" key.
 
+You can access settings by pressing "Escape".
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
