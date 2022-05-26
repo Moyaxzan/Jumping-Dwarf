@@ -69,7 +69,8 @@ Clone the repository
 ```sh
 $ git clone https://github.com/Moyaxzan/Jumping-Dwarf/
 ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+
+
 ### Running
 
 Run the main.py
@@ -77,8 +78,8 @@ Run the main.py
 ```sh
 $ python main.py
 ```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-<br>
 
 ## Usage
 
