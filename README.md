@@ -55,10 +55,8 @@ We hope you will enjoy playing the game as much as we do !
 ## Getting Started
 
 ### Prerequisites
-
-Python
 * Download Python 3.7 or earlier versions at https://www.python.org/downloads/
-* pygame
+* Download pygame
 ```sh
 python3 -m pip install -U pygame --user
 ```
