@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.5
         self.hold = 0
         self.jump_speed = -10
+        self.falling_count = 0
         # Allows the player to have several animations.
         self.anime = Animation()
 
@@ -33,8 +34,15 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
             if not held:
                 self.image = pygame.image.load(self.anime.launch_gif("static_dwarf", "dwarf", 2, .03))
-        elif not ground and self.direction.y > 18:
-            self.image = pygame.image.load(self.anime.launch_gif("falling_dwarf", "dwarf", 2, .1))
+        elif not ground:
+            if self.direction.y > 18:
+                self.image = pygame.image.load(self.anime.launch_gif("falling_dwarf", "dwarf", 2, .1))
+                self.falling_count += 1
+            elif self.direction.x > 0:
+                self.image = pygame.image.load(self.anime.launch_gif("jumping_right", "dwarf", 1, 0))
+            elif self.direction.x < 0:
+                self.image = pygame.image.load(self.anime.launch_gif("jumping_left", "dwarf", 1, 0))
+
 
     # Makes the play jump, the longer he holds space the higher because of "hold_value" variable.
     def jump(self, hold_value, in_settings):
