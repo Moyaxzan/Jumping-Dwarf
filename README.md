@@ -77,9 +77,7 @@ Run the main.py
 ```sh
 $ python main.py
 ```
-
-
-
+<br>
 ## Usage
 
 In order to play the game you will need a keyboard since you need to hold the spacebar to jump. The longer you hold it, the higher you jump. In order to perform the jump you simply need to release the spacebar, or it will do it automatically if you cannot jump any higher.
