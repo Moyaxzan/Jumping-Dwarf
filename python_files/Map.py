@@ -24,7 +24,12 @@ class Map:
         self.oiseaux1_group = pygame.sprite.Group()
         self.oiseaux2_group = pygame.sprite.Group()
         self.stone_group = pygame.sprite.Group()
-        self.cloud_group = pygame.sprite.Group()
+        self.cloud1_group = pygame.sprite.Group()
+        self.cloud2_group = pygame.sprite.Group()
+        self.cloud3_group = pygame.sprite.Group()
+        self.cloud4_group = pygame.sprite.Group()
+        self.cloud5_group = pygame.sprite.Group()
+        self.cloud6_group = pygame.sprite.Group()
         # Iterates through the list in settings.py, then add to the different groups the right tile depending
         # on what letters are found . (ie. G for grass, D for dirt)
         for row_index, row in enumerate(layout):
@@ -73,9 +78,25 @@ class Map:
                 if cell == "R":
                     self.stone = Scenery((x,y))
                     self.stone_group.add(self.stone)
-                if cell == "C":
-                    self.cloud = Scenery((x,y))
-                    self.cloud_group.add(self.cloud)
+                if cell == "1":
+                    self.cloud1 = Scenery((x,y))
+                    self.cloud1_group.add(self.cloud1)
+                if cell == "2":
+                    self.cloud2 = Scenery((x,y))
+                    self.cloud2_group.add(self.cloud2)
+                if cell == "3":
+                    self.cloud3 = Scenery((x,y))
+                    self.cloud3_group.add(self.cloud3)
+                if cell == "4":
+                    self.cloud4 = Scenery((x, y))
+                    self.cloud4_group.add(self.cloud4)
+                if cell == "5":
+                    self.cloud5 = Scenery((x,y))
+                    self.cloud5_group.add(self.cloud5)
+                if cell == "6":
+                    self.cloud6 = Scenery((x,y))
+                    self.cloud6_group.add(self.cloud6)
+
         # Draw every groups where they need to be.
         self.tiles_group.update("y", -60 * len(map_list) + screen_height)
         self.beer_group.update("y", -60 * len(map_list) + screen_height)
@@ -86,7 +107,12 @@ class Map:
         self.oiseaux2_group.update("y", -60 * len(map_list) + screen_height)
         self.stone_group.update("y", -60 * len(map_list) + screen_height)
         self.sun_group.update("y", -60 * len(map_list) + screen_height - 50)
-        self.cloud_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud1_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud2_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud3_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud4_group.update("y", -60 * len(map_list) + screen_height - 45)
+        self.cloud5_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud6_group.update("y", -60 * len(map_list) + screen_height - 50)
         self.tourist_group.update("x", -20)
         self.tourist_group.update("y", -60 * len(map_list) + screen_height + 30)
         self.nani_group.update("y", -60 * len(map_list) + screen_height + 35)
@@ -135,7 +161,12 @@ class Map:
         self.oiseaux1_group.update("y", world_shift)
         self.oiseaux2_group.update("y", world_shift)
         self.stone_group.update("y", world_shift)
-        self.cloud_group.update("y", world_shift)
+        self.cloud1_group.update("y", world_shift)
+        self.cloud2_group.update("y", world_shift)
+        self.cloud3_group.update("y", world_shift)
+        self.cloud4_group.update("y", world_shift)
+        self.cloud5_group.update("y", world_shift)
+        self.cloud6_group.update("y", world_shift)
 
         self.beer.display("beer", "beer", 20, 0.8)
         self.sword.display("sword", "sword", 3, 0.08)
@@ -151,11 +182,26 @@ class Map:
             each_oiseau2.display("oiseaux", "oiseaux2", 2, 0.05)
         for each_flower in self.flower_group.sprites():
             each_flower.display("flower", "flower", 2, 0.02)
-        for each_cloud in self.cloud_group.sprites():
-            each_cloud.display("cloud", "cloud", 2, 0.02)
+        for each_cloud in self.cloud1_group.sprites():
+            each_cloud.display("cloud1", "divers", 1, 0)
+        for each_cloud in self.cloud2_group.sprites():
+            each_cloud.display("cloud2", "divers", 1, 0)
+        for each_cloud in self.cloud3_group.sprites():
+            each_cloud.display("cloud3", "divers", 1, 0)
+        for each_cloud in self.cloud4_group.sprites():
+            each_cloud.display("cloud4", "divers", 1, 0)
+        for each_cloud in self.cloud5_group.sprites():
+            each_cloud.display("cloud5", "divers", 1, 0)
+        for each_cloud in self.cloud6_group.sprites():
+            each_cloud.display("cloud6", "divers", 1, 0)
         self.movement_collide()
 
-        self.cloud_group.draw(self.display_surface)
+        self.cloud1_group.draw(self.display_surface)
+        self.cloud2_group.draw(self.display_surface)
+        self.cloud3_group.draw(self.display_surface)
+        self.cloud4_group.draw(self.display_surface)
+        self.cloud5_group.draw(self.display_surface)
+        self.cloud6_group.draw(self.display_surface)
         self.beer_group.draw(self.display_surface)
         self.flower_group.draw(self.display_surface)
         self.sword_group.draw(self.display_surface)
