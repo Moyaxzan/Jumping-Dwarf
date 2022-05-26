@@ -95,7 +95,7 @@ In order to jump to the left you will need to hold the "Q" key while releasing y
 
 ## Acknowledgments
 
-[pygame]: https://www.pygame.org/docs/
-[Trello]:https://trello.com/
+*[pygame](https://www.pygame.org/docs/)
+*[Trello](https://trello.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
