@@ -21,6 +21,10 @@ class Map:
         self.nani_group = pygame.sprite.Group()
         self.wazo_group = pygame.sprite.Group()
         self.sun_group = pygame.sprite.Group()
+        self.oiseaux1_group = pygame.sprite.Group()
+        self.oiseaux2_group = pygame.sprite.Group()
+        self.stone_group = pygame.sprite.Group()
+        self.cloud_group = pygame.sprite.Group()
         # Iterates through the list in settings.py, then add to the different groups the right tile depending
         # on what letters are found . (ie. G for grass, D for dirt)
         for row_index, row in enumerate(layout):
@@ -51,7 +55,7 @@ class Map:
                 if cell == "N":
                     self.nani = Scenery((x, y))
                     self.nani_group.add(self.nani)
-                if cell == "O":
+                if cell == "w":
                     self.wazo = Scenery((x, y-53.5))
                     self.wazo_group.add(self.wazo)
                 if cell == "S":
@@ -60,13 +64,29 @@ class Map:
                 if cell == "s":
                     self.sun = Scenery((x,y))
                     self.sun_group.add(self.sun)
+                if cell == "O":
+                    self.oiseau = Scenery((x,y))
+                    self.oiseaux1_group.add(self.oiseau)
+                if cell == "o":
+                    self.oiseau = Scenery((x,y))
+                    self.oiseaux2_group.add(self.oiseau)
+                if cell == "R":
+                    self.stone = Scenery((x,y))
+                    self.stone_group.add(self.stone)
+                if cell == "C":
+                    self.cloud = Scenery((x,y))
+                    self.cloud_group.add(self.cloud)
         # Draw every groups where they need to be.
         self.tiles_group.update("y", -60 * len(map_list) + screen_height)
         self.beer_group.update("y", -60 * len(map_list) + screen_height)
         self.sword_group.update("y", -60 * len(map_list) + screen_height)
         self.flower_group.update("y", -60 * len(map_list) + screen_height)
         self.wazo_group.update("y", -60 * len(map_list) + screen_height)
+        self.oiseaux1_group.update("y", -60 * len(map_list) + screen_height)
+        self.oiseaux2_group.update("y", -60 * len(map_list) + screen_height)
+        self.stone_group.update("y", -60 * len(map_list) + screen_height)
         self.sun_group.update("y", -60 * len(map_list) + screen_height - 50)
+        self.cloud_group.update("y", -60 * len(map_list) + screen_height - 50)
         self.tourist_group.update("x", -20)
         self.tourist_group.update("y", -60 * len(map_list) + screen_height + 30)
         self.nani_group.update("y", -60 * len(map_list) + screen_height + 35)
@@ -111,15 +131,27 @@ class Map:
         self.nani_group.update("y", world_shift)
         self.wazo_group.update("y", world_shift)
         self.sun_group.update("y", world_shift)
+        self.oiseaux1_group.update("y", world_shift)
+        self.oiseaux2_group.update("y", world_shift)
+        self.stone_group.update("y", world_shift)
+        self.cloud_group.update("y", world_shift)
         self.beer.display("beer", "beer", 20, 0.8)
         self.sword.display("sword", "sword", 3, 0.08)
         self.tourist.display("tourist", "tourist", 8, 0.06)
         self.nani.display("nani","nani", 3, 0.1)
         self.wazo.display("wazo","wazo", 4, 0.08)
         self.sun.display("sun","sun", 6, 0.04)
+        self.stone.display("rock","divers", 1, 0)
+        for each_oiseau1 in self.oiseaux1_group.sprites():
+            each_oiseau1.display("oiseaux","oiseaux1", 2, 0.05)
+        for each_oiseau2 in self.oiseaux2_group.sprites():
+            each_oiseau2.display("oiseaux", "oiseaux2", 2, 0.05)
         for each_flower in self.flower_group.sprites():
             each_flower.display("flower", "flower", 2, 0.02)
+        for each_cloud in self.cloud_group.sprites():
+            each_cloud.display("cloud", "cloud", 2, 0.02)
         self.movement_collide()
+        self.cloud_group.draw(self.display_surface)
         self.beer_group.draw(self.display_surface)
         self.flower_group.draw(self.display_surface)
         self.sword_group.draw(self.display_surface)
@@ -127,5 +159,9 @@ class Map:
         self.nani_group.draw(self.display_surface)
         self.wazo_group.draw(self.display_surface)
         self.sun_group.draw(self.display_surface)
+        self.oiseaux1_group.draw(self.display_surface)
+        self.oiseaux2_group.draw(self.display_surface)
+        self.stone_group.draw(self.display_surface)
         self.tiles_group.draw(self.display_surface)
         self.player.draw(self.display_surface)
+

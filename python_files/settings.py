@@ -1,6 +1,7 @@
 from sys import exit
 import pygame.transform
 from Animation import *
+from Buttons import *
 
 
 def Homepage(screen):
@@ -27,11 +28,11 @@ def Homepage(screen):
                     door_pos = (screen_width * 0.022, screen_height * 0.491)
                     door_dims = (screen_width * 0.1, screen_height * 0.3)
         # Creates the start and quit buttons.
-        start_button = pygame.draw.rect(screen, "red", (door_pos, door_dims))
-        quit_button = pygame.draw.rect(screen, "blue", ((screen_width*0.3, screen_height*0.825), (300, 100)))
+        start_button = Button.draw(Button(screen, door_pos, door_dims, "red"))
+        quit_button = Button.draw(Button(screen, (screen_width*0.3, screen_height*0.825), (300, 100), "blue"))
         clock.tick(30)
         # Loads the opened door.
-        if not stay_in_settings and start_button.collidepoint(pygame.mouse.get_pos()):
+        if start_button.collidepoint(pygame.mouse.get_pos()):
             with open("../assets/menu_bg/opened_door.png") as opened_door:
                 door_display = pygame.image.load(opened_door)
                 door_pos = (screen_width * 0.022, screen_height * 0.491)
@@ -69,7 +70,7 @@ def Homepage(screen):
 def ending(screen):
     fade_transi(screen,"in",3)
     while True:
-        end = pygame.transform.scale(pygame.image.load(r"../assets/divers/ending_screen.png"), (screen_width, screen_height))
+        end = pygame.transform.scale(pygame.image.load(r"../assets/divers/end.png"), (screen_width, screen_height))
         screen.blit(end, (0, 0))
         events = pygame.event.get()
         for event in events:
@@ -113,12 +114,12 @@ def fade_transi(screen,in_out,duration):
 
 # List from which we get the map in map.py.
 map_list = [
-    "s                      W",
+    "s            o      Oo W",
+    "      C       oOOoO    W",
+    "          oO           W",
     "                       W",
-    "                       W",
-    "                       W",
-    "                       W",
-    "W                   BP  W",
+    "                     B W",
+    "W                      W",
     "W                  GGGW",
     "W                     W",
     "W                     W",
@@ -216,9 +217,10 @@ map_list = [
     "W                     W",
     "W                     W",
     "W   GGGGG             W",
+    "W                P    W",
     "W                     W",
     "W                     W",
-    "W    F                W",
+    "W    F          R     W",
     "DGGGGGGGGGGGGGGGGGGGGGD"]
 
 

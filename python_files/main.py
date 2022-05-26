@@ -51,6 +51,7 @@ if __name__ == '__main__':
 
             # Quits the game.
             if event.type == pygame.QUIT:
+                print("You falled %d times", player.falling_count)
                 pygame.quit()
                 sys.exit()
 
@@ -68,10 +69,7 @@ if __name__ == '__main__':
             # Checks if the player is still holding space OR if he pressed it for too long,
             # which will make him jump afterwards.
             elif event.type == pygame.KEYUP or hold_value > 11:
-                if hold_value > 11:
-                    hold = False
-                    held = False
-                elif event.key == pygame.K_SPACE:
+                if hold_value > 11 or event.key == pygame.K_SPACE:
                     hold = False
                     held = False
 
