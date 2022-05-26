@@ -43,7 +43,7 @@ We are 6 L1 students from EFREI Paris - School of Generalist Digital Engineering
 
 We had to do a game for our 2nd semester that has to contain a trajectory formula.
 
-We decided to Create Jumping Dwarf because we have been inspired by the Game [Jumpking](https://store.steampowered.com/app/1061090/Jump_King/).
+We decided to create Jumping Dwarf because we have been inspired by the Game [Jump King](https://store.steampowered.com/app/1061090/Jump_King/).
 
 Some of us were really motivated about it, and that is what allowed us to have a complete game that we like containing music, nice visuals and good feelings when playing. Because we believe that if we enjoy playing the game, others will.
 
