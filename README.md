@@ -70,7 +70,6 @@ Clone the repository
 $ git clone https://github.com/Moyaxzan/Jumping-Dwarf/
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Running
 
 Run the main.py
