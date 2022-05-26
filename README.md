@@ -58,7 +58,7 @@ We hope you will enjoy playing the game as much as we do !
 * Download Python 3.7 or earlier versions at https://www.python.org/downloads/
 * Download pygame
 ```sh
-python3 -m pip install -U pygame --user
+$ python3 -m pip install -U pygame --user
 ```
 see [Pygame: Getting Started](https://www.pygame.org/wiki/GettingStarted)
  
@@ -67,18 +67,17 @@ see [Pygame: Getting Started](https://www.pygame.org/wiki/GettingStarted)
 
 Clone the repository 
 ```sh
-git clone https://github.com/Moyaxzan/Jumping-Dwarf/
+$ git clone https://github.com/Moyaxzan/Jumping-Dwarf/
 ```
-
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Running
 
 Run the main.py
 ```sh
-python main.py
+$ python main.py
 ```
+
 
 ## Usage
 
