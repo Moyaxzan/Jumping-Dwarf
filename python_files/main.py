@@ -20,7 +20,6 @@ if __name__ == '__main__':
     go_to_menu = True
     in_settings = False
 
-
     while True:
         # Forces the player to go through the menu when he starts the program.
         if go_to_menu:
@@ -31,15 +30,17 @@ if __name__ == '__main__':
         # Setting the basic components
         worldshift = 0
         pygame.display.update()
-        cog_button = pygame.draw.rect(screen,"purple", ((screen_width-120,10),(50,50)))
-        screen.fill("cyan")
-        cog = pygame.transform.scale(pygame.image.load("../assets/settings/settings_icone.png"), (50,50))
-        screen.blit(cog, (screen_width-120,10))
+        cog_button = pygame.draw.rect(screen, "purple", ((screen_width-120, 10), (50, 50)))
+#       screen.fill("#87ceeb")
+        screen.fill("#7bd3f7")
+#       screen.fill("#26c4ec")
+        cog = pygame.transform.scale(pygame.image.load("../assets/settings/settings_icone.png"), (50, 50))
+        screen.blit(cog, (screen_width-120, 10))
         clock.tick(60)
         events = pygame.event.get()
         player = world.player.sprite
 
-        # Allows the camera to move along the player.
+        # Allows the "camera" to move along the player.
         if player.get_y() < 0:
             worldshift = screen_height
             player.set_y(player.get_y() + screen_height)
@@ -53,7 +54,7 @@ if __name__ == '__main__':
 
             # Quits the game.
             if event.type == pygame.QUIT:
-                print("You fell %i times." %player.falling_count)
+                print("You fell %i times." % player.falling_count)
                 pygame.quit()
                 sys.exit()
 

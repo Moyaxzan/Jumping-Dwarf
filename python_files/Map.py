@@ -30,8 +30,9 @@ class Map:
         self.cloud4_group = pygame.sprite.Group()
         self.cloud5_group = pygame.sprite.Group()
         self.cloud6_group = pygame.sprite.Group()
+
         # Iterates through the list in settings.py, then add to the different groups the right tile depending
-        # on what letters are found . (ie. G for grass, D for dirt)
+        # on what letters are found . (i.e. G for grass, D for dirt)
         for row_index, row in enumerate(layout):
             for col_index, cell in enumerate(row):
                 x = col_index * 60
@@ -129,12 +130,17 @@ class Map:
                     player.rect.left = sprite.rect.right
                     player.direction.x = -player.direction.x * 0.5
                     if not player.on_ground(self):
-                        self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_right", "dwarf", 2, .1))
+
+                        self.player.sprite.image = \
+                            pygame.image.load(self.player.sprite.anime.launch_gif("running_right", "dwarf", 2, .1))
+
                 elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
                     player.direction.x = -player.direction.x * 0.5
                     if not player.on_ground(self):
-                        self.player.sprite.image = pygame.image.load(self.player.sprite.anime.launch_gif("running_left", "dwarf", 2, .1))
+
+                        self.player.sprite.image = \
+                            pygame.image.load(self.player.sprite.anime.launch_gif("running_left", "dwarf", 2, .1))
 
         player.rect.y += player.direction.y
         for sprite in self.tiles_group.sprites():

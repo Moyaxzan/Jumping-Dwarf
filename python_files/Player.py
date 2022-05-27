@@ -3,6 +3,7 @@ from Animation import *
 from Tiles import *
 from random import randint
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
@@ -43,7 +44,6 @@ class Player(pygame.sprite.Sprite):
             elif self.direction.x < 0:
                 self.image = pygame.image.load(self.anime.launch_gif("jumping_left", "dwarf", 1, 0))
 
-
     # Makes the play jump, the longer he holds space the higher because of "hold_value" variable.
     def jump(self, hold_value, in_settings):
         if not in_settings:
@@ -69,7 +69,9 @@ class Player(pygame.sprite.Sprite):
     # Returns True if the player is on ground.
     def on_ground(self, world):
         for tile in world.tiles_group:
-            if tile.rect.collidepoint(self.rect.centerx - 33, self.rect.bottom) or tile.rect.collidepoint(self.rect.centerx + 33, self.rect.bottom):
+            if tile.rect.collidepoint(self.rect.centerx - 33, self.rect.bottom) \
+                    or tile.rect.collidepoint(self.rect.centerx + 33, self.rect.bottom):
+
                 return True
         return False
 
