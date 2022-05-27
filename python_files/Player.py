@@ -2,7 +2,7 @@ import pygame.math
 from Animation import *
 from Tiles import *
 from random import randint
-
+from math import cos, tan
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.jump_speed = -10
         self.falling_count = 0
         self.in_air = 0
+        self.vect = 0
         # Allows the player to have several animations.
         self.anime = Animation()
 
@@ -52,12 +53,10 @@ class Player(pygame.sprite.Sprite):
                 self.image = pygame.image.load(self.anime.launch_gif("jumping_left", "dwarf", 1, 0))
 
     # Makes the play jump, the longer he holds space the higher because of "hold_value" variable.
-    def jump(self, hold_value, in_settings):
-        if not in_settings:
-            rand = randint(1, 5)
-            sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
-            pygame.mixer.Sound.play(sound_jump)
-            self.direction.y = -6 - hold_value
+    def jump_(self, hold, x, height):
+        angle = hold * 120
+        g = 9.81
+        y = -(g / 2 * self.vect * cos(angle)**2) * x**2 + tan(angle) * x + height
 
     # Apply gravity, called in each frame by update().
     def apply_gravity(self):
@@ -93,3 +92,47 @@ class Player(pygame.sprite.Sprite):
     # Sets position y position.
     def set_y(self, y):
         self.rect.centery = y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def jump(self, hold_value, in_settings):
+        if not in_settings:
+            rand = randint(1, 5)
+            sound_jump = pygame.mixer.Sound("../audio/saut" + str(rand) + ".wav")
+            pygame.mixer.Sound.play(sound_jump)
+            self.direction.y = -6 - hold_value

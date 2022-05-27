@@ -65,7 +65,7 @@ if __name__ == '__main__':
                 player.image = pygame.image.load(player.anime.launch_gif("stacking_dwarf", "dwarf", 1, 0))
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_SPACE and player.on_ground(world):
                     hold = True
                     pressed = True
 
